@@ -9,7 +9,6 @@ public class AccountManager extends JFrame{
     private JPanel MainPanel;
     private JLabel AccountNumLbl;
     private JButton logOutButton;
-    private int rsp=0;
 
     public AccountManager(String accNum, Controller ctr) {
         setContentPane(MainPanel);

@@ -15,7 +15,7 @@ public class InputWindow extends JFrame{
     private ResultSet rst;
     private Boolean newACCF=false;
 
-
+//Log-in and Sign-Up window
     public InputWindow(Statement state) {
         setContentPane(MainPanel);
         setTitle("Log-In");
@@ -24,6 +24,8 @@ public class InputWindow extends JFrame{
         setVisible(true);
 
         logInButton.addActionListener(e -> {
+
+            //new account flag check: if true user will be directed to account creation process
             if(!newACCF) {
                 String acc = "\"" + AccountNameInput.getText() + "\"";
                 sql = "select * from accounts where accNum=" + acc;
@@ -49,19 +51,42 @@ public class InputWindow extends JFrame{
             }
             else {
                 String acc= AccountNameInput.getText();
-                accs= new Conta(acc);
-                sql= "insert into accounts(accNum, balance) values ("+accs.getNumero()+","+accs.getSaldo()+")";
+
+                //verifying new account number isn't taken.
+                sql = "select * from accounts where accNum=" + acc;
                 try {
-                    state.execute(sql);
+                    rst = state.executeQuery(sql);
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
-                dispose();
+
+                try {
+                    if(rst.next()){
+                        JOptionPane.showMessageDialog(this, "This number is already taken.");
+                    }
+                    else{
+                        //adding new account to database
+                        accs= new Conta(acc);
+                        sql= "insert into accounts(accNum, balance) values ("+accs.getNumero()+","+accs.getSaldo()+")";
+                        try {
+                            state.execute(sql);
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                        dispose();
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
+
+        //New Account toggle
         NewAccButton.addActionListener(e -> {
             newACCF= true;
             LabelMain.setText("Add new Account");
+            NewAccButton.setVisible(false);
+            logInButton.setText("Sign up");
         });
     }
 
@@ -70,9 +95,5 @@ public class InputWindow extends JFrame{
             return new Conta("-1", 0);
         }
         return accs;
-    }
-
-    public Boolean getNewACCF(){
-        return newACCF;
     }
 }

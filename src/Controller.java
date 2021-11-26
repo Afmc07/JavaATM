@@ -11,6 +11,7 @@ public class Controller {
         this.state=s;
     }
 
+    //User Response Manager
     public void process(int a){
         switch (a){
             case 1->deposit();

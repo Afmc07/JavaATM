@@ -2,7 +2,7 @@ import org.aspectj.lang.annotation.Aspect;
 
 @Aspect
 public aspect ContaLoggerContexto {
-
+//Log for deposits
     pointcut creditLog(Conta a, double b):
             call (* Conta.creditar(double)) &&
             target(a) &&
@@ -19,12 +19,12 @@ public aspect ContaLoggerContexto {
         skip(1);
     }
     
-
+//Log for withdrawals
     pointcut debitLog(Conta a, double b):
             call (* Conta.debitar(double)) &&
             target(a) &&
             args(b);
-
+//Balance check prior to proceeding.
     void around(Conta a, double b): debitLog(a, b){
         if(b>a.getSaldo()) {
             skip(0);
@@ -53,6 +53,7 @@ public aspect ContaLoggerContexto {
 
     }
 
+//Process Log
     pointcut dataProc():
             call(void Controller.details());
 

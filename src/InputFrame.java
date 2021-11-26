@@ -11,7 +11,7 @@ public class InputFrame extends JFrame{
     private double post;
     private String sql;
 
-
+//Deposit and Withdrawal window
     public InputFrame(String tit, Conta acc, Statement state){
         setContentPane(MainPanel);
         setTitle(tit);
@@ -21,6 +21,8 @@ public class InputFrame extends JFrame{
 
         confirmButton.addActionListener(e ->{
             am= Double.parseDouble(InputBox.getText());
+
+            //Deposit process
             if (tit.equals("Deposit")){
                 acc.creditar(am);
                 String t= "\""+acc.getNumero()+"\"";
@@ -31,11 +33,14 @@ public class InputFrame extends JFrame{
                     ex.printStackTrace();
                 }
             }
+
+            //Withdrawal process
             else {
                 pre= acc.getSaldo();
                 acc.debitar(am);
                 post= acc.getSaldo();
 
+                //Secondary balance check
                 if(pre==post || post<0){
                     acc.setSaldo(pre);
                     JOptionPane.showMessageDialog(this, "Transaction Failed: Insufficient Funds.");
@@ -52,9 +57,5 @@ public class InputFrame extends JFrame{
             }
             dispose();
         });
-    }
-
-    public double getAm(){
-        return am;
     }
 }

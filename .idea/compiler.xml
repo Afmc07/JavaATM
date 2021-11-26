@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AjcSettings">
+    <option name="ajcPath" value="$USER_HOME$/AJC-Tools/aspectjtools-1.9.8.RC1.jar" />
+  </component>
+  <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="ajc" />
+    <bytecodeTargetLevel>
+      <module name="AJTest" target="" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

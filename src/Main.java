@@ -4,9 +4,9 @@ public class Main {
     public static void main (String[] args) throws SQLException{
         Controller ctr=null;
         //sql
-        String jdbURL= "jdbc:mysql://localhost:3306/javatest"; //177.127.7.193
-        String username= "root";
-        String password="Jrp-25-Afm07";
+        String jdbURL= "jdbc:mysql://localhost:3306/javatest";
+        String username= "EXAMPLE";
+        String password="EXAMPLE";
         Conta acc= null;
 
         Connection con= DriverManager.getConnection(jdbURL, username, password);

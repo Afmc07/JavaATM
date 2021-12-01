@@ -7,8 +7,8 @@ public class Main {
 
         //sql setup
         String jdbURL= "jdbc:mysql://localhost:3306/javatest";
-        String username= "root";
-        String password="Jrp-25-Afm07";
+        String username= "EXAMPLE";
+        String password="EXAMPLE";
         Conta acc= null;
 
         //table setup

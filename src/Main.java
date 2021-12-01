@@ -5,8 +5,8 @@ public class Main {
         //process control class
         Controller ctr=null;
 
-        //sql setup
-        String jdbURL= "jdbc:mysql://localhost:3306/javatest";
+        //sql setup make sure to update examples when testing
+        String jdbURL= "jdbc:mysql://localhost:3306/EXAMPLEDATABASE";
         String username= "EXAMPLE";
         String password="EXAMPLE";
         Conta acc= null;
